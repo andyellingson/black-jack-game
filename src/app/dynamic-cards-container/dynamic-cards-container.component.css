@@ -1,0 +1,107 @@
+.cardRow{
+    min-width: 254px;
+    min-height: 120px;
+    margin: auto;
+    padding: 5px;
+    width: auto;
+    border:solid white 2px;
+    vertical-align: center;
+}
+.cardRowDealer{
+    vertical-align: center;
+    min-width: 254px;
+    min-height: 120px;
+    margin: auto;
+    padding: 5px;
+    width: auto;
+}
+.actionButton{
+    width: 75;
+    padding:5px;
+    border:solid rgb(0, 0, 0) 1px;
+}
+.total{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    padding-right: 5px;
+    padding-left: 10px;
+}
+.gameData{
+    min-width: 55px;
+    border:solid black 2px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+}
+.gameDataValue{
+    min-width: 55px;
+    border:solid black 2px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+    text-align: right;
+}
+.bustedText{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    vertical-align: auto;
+    color: red;
+    padding-right: 5px;
+}
+.title{
+    font-size: 40px;
+    padding-left: 70px;
+    vertical-align: auto;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-right: 5px;
+}
+.title2{
+    font-size: 24px;
+    font-weight: bold;
+    vertical-align: auto;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.bankAmount{
+    font-size: 24px;
+    font-weight: bold;
+    vertical-align: auto;
+    color: yellow;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.uiContainer{
+    margin: auto;
+}
+.chip{
+    width: 50px;
+    padding: 5px;
+    margin: auto;
+}
+.imgHolder {
+    position: relative;
+    color: black;
+    font-weight: bolder;
+    font-size: 18px;
+}
+.imgHolder span {
+    position: absolute;
+    right: 20px;
+    top: 14px;
+}
+.imgHolder2 {
+    position: relative;
+    color: black;
+    font-weight: bolder;
+    font-size: 18px;
+}
+.imgHolder2 span {
+    position: absolute;
+    right: 15px;
+    top: 14px;
+}
+.sideBar{
+    min-width: 20px;
+    text-align: center;
+    padding-top: 40px;
+}
+

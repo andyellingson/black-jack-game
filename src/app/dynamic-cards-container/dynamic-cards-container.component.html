@@ -1,0 +1,78 @@
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <div style="display: flex;">
+            <label class="title2" >Black Jack</label> 
+                <div style="padding-left: 30px;">
+                    <div style="width: 100px; text-align:right;">
+                        <label class="bankAmount" >${{Bank}}</label> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui-toolbar-group-right">
+    </div>
+</p-toolbar>
+<div cdkDropListGroup style="margin:auto">
+    <div style="display: flex;">
+        <div>
+            <div style="text-align: center;">
+                <label style="color: yellow; font-size: 15px;">DEALER STANDS ON ALL 17s</label>
+            </div>
+            <div cdkDropList 
+                class="cardRowDealer" id="dealer"
+                (cdkDropListDropped)="drop($event)"
+                [cdkDropListData]="theDeck">
+                <div style="display: flex;">
+                    <div class="sideBar">
+                        <label [hidden]="this.Bet === 0" style="font-size: 15px; color: yellow;">{{DealerTotal}}</label>  
+                    </div>                    
+                    <div #dealerCardContainer></div> 
+                </div>
+            </div>
+            <div cdkDropList 
+                class="cardRow" id="player"
+                (cdkDropListDropped)="drop($event)" 
+                [cdkDropListData]="playerCards">
+                <div style="display: flex;">
+                    <div class="sideBar">
+                        <label [hidden]="this.Bet === 0" style="font-size: 15px; color: yellow;">{{Total}}</label>
+                    </div>  
+                    <div #playerCardContainer></div>    
+                </div>
+            </div>
+            <div style="display: flex;">
+                <div class="imgHolder">
+                    <img class="chip" src="./assets/img/chipWhite.png" (click)="BetMoney(1)">
+                    <span style=" pointer-events: none;">1</span>
+                </div>
+                <div class="imgHolder">
+                    <img class="chip" src="./assets/img/chipBlue.png" (click)="BetMoney(5)">
+                    <span style=" pointer-events: none;">5</span>
+                </div>
+                <div class="imgHolder2">
+                    <img class="chip" src="./assets/img/chipRed.png" (click)="BetMoney(25)">
+                    <span style=" pointer-events: none;">25</span>
+                </div>
+                <div class="imgHolder2">
+                    <img class="chip" src="./assets/img/chipBlack.png" (click)="BetMoney(50)">
+                    <span style=" pointer-events: none;">50</span>
+                </div>
+                <div style="padding-top:5px; padding-left: 10px; font-size: 30px; color: yellow;">
+                    <label [hidden]="!IsBet()">${{Bet}}</label>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div style="display: flex;">
+        <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="CanDouble()"  label="Double" (click)="BetMoney(Bet, true)"></button>
+        <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver"  label="Hit Me" (click)="HitMe()"></button>
+        <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver" label="Stand" (click)="Stay()"></button>
+        <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver" label="Play" (click)="Play()"></button>
+    </div>
+    <div>
+        <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver" label="Clear Bet" (click)="ClearBet()"></button>
+    </div>  
+<p-toast position="top-left"></p-toast>
+   
