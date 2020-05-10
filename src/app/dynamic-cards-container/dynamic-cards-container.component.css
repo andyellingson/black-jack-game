@@ -1,3 +1,7 @@
+.center {
+    display: flex;
+    justify-content: center;
+  }
 .cardRow{
     min-width: 254px;
     min-height: 120px;
@@ -6,6 +10,13 @@
     width: auto;
     border:solid white 2px;
     vertical-align: center;
+}
+.cardRowNew{
+    min-width: 254px;
+    min-height: 120px;
+    border:solid white 2px;
+    display: flex;
+    justify-content: center;
 }
 .cardRowDealer{
     vertical-align: center;

@@ -131,10 +131,11 @@ export class DynamicCardsContainerComponent implements OnInit {
   IsBet():boolean{
     return this.Bet > 0;
   }
+
   BetMoney(bet: number, isDouble: boolean = false): void{
     if(this.gameOver || isDouble)
     {
-      if(this.Bet <= this.Bank)
+      if(this.Bank - bet >= 0)
       {
         this.Bank -= bet;
         this.Bet += bet;
@@ -146,8 +147,13 @@ export class DynamicCardsContainerComponent implements OnInit {
       this.StartDealersTurn();
     }
   }
+
   CanDouble():boolean{
     return !(this.NoHitYet && (this.Total === 10 || this.Total === 11));
+  }
+
+  CanPlay():boolean{
+    return this.Bank > 0;
   }
 
   StartDealersTurn(){
@@ -191,6 +197,7 @@ export class DynamicCardsContainerComponent implements OnInit {
           }else if(this.DealerTotal === this.Total){
             this.gameOver = true;
             this.showToastMessage("warn", "Tie", "Push!!"); 
+            this.Bank += this.Bet; 
             this.EndDealerTurn();   
           }else{
             this.gameOver = true;
