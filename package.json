@@ -24,6 +24,8 @@
     "@angular/platform-browser": "^9.0.7",
     "@angular/platform-browser-dynamic": "^9.0.7",
     "@angular/router": "^9.0.7",
+    "express":"*",
+    "body-parser":"*",
     "font-awesome": "^4.7.0",
     "primeicons": "^2.0.0",
     "primeng": "^9.0.6",
