@@ -3,12 +3,8 @@
     justify-content: center;
   }
 .cardRow{
-    min-width: 254px;
     min-height: 120px;
-    margin: auto;
-    padding: 5px;
-    width: auto;
-    border:solid white 2px;
+    border:solid white 3px;
     vertical-align: center;
 }
 .cardRowNew{
@@ -79,6 +75,10 @@
     vertical-align: auto;
     color: yellow;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.myButton {
+    height: 65px;
+    width: 35%;
 }
 .uiContainer{
     margin: auto;
