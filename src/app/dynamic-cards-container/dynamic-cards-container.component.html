@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="center">
-                <div class="imgHolder">
+                <div class="imgHolder" >
                     <img class="chip" src="./assets/img/chipWhite.png" (click)="BetMoney(1)">
                     <span style=" pointer-events: none;">1</span>
                 </div>
@@ -70,11 +70,11 @@
     <div class="center">
         <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver"  label="Hit Me" (click)="HitMe()"></button>
         <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver" label="Stand" (click)="Stay()"></button>
-        <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver" label="Play" (click)="Play()"></button>
+        <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver || !CanPlay()" label="Play" (click)="Play()"></button>
     </div>
     <div class="center">
-        <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="CanDouble()"  label="Double" (click)="BetMoney(Bet, true)"></button>
+        <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="CanDouble() || !CanPlay()"  label="Double" (click)="BetMoney(Bet, true)"></button>
         <button style="margin:1px;" pButton type="button" class="ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver" label="Clear Bet" (click)="ClearBet()"></button>
     </div>  
-<p-toast position="top-left"></p-toast>
+<p-toast position="top-center"></p-toast>
    
