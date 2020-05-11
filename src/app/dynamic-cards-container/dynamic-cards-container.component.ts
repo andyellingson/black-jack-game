@@ -113,8 +113,9 @@ export class DynamicCardsContainerComponent implements OnInit {
   HitMe(){
     if(!this.NoHitYet)
     {
-      this.NoHitYet = true;
+      this.NoHitYet = false;
     }
+
     this.createPlayerCardComponent(this.randomInt(0,51));  
   }
 
@@ -182,7 +183,7 @@ export class DynamicCardsContainerComponent implements OnInit {
             this.gameOver = true;
             this.showToastMessage("info", "You Win!!", "Dealer Busted. You won $" + this.Bet);
             this.EndDealerTurn();  
-            this.Bank += (this.isDoubled ? 3 : 2) * this.Bet;
+            this.Bank += (this.isDoubled ? 4 : 2) * this.Bet;
           }
         }else{
           //dealer between 17 and 21
@@ -190,7 +191,7 @@ export class DynamicCardsContainerComponent implements OnInit {
             this.gameOver = true;
             this.showToastMessage("info", "You Won $" + this.Bet, "You beat the dealer's Hand!");  
             this.EndDealerTurn(); 
-            this.Bank += (this.isDoubled ? 3 : 2) * this.Bet; 
+            this.Bank += (this.isDoubled ? 4 : 2) * this.Bet; 
           }else if(this.DealerTotal === this.Total){
             this.gameOver = true;
             this.showToastMessage("warn", "Tie", "Push!!"); 
@@ -205,9 +206,11 @@ export class DynamicCardsContainerComponent implements OnInit {
         }          
       }
     }
+
     EndDealerTurn(){
       clearInterval(this.timer);
     }
+    
     showToastMessage(sev: string, sum: string, det: string) {
     this.messageService.add({
         severity: sev,
