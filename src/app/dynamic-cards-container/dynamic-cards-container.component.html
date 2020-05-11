@@ -13,12 +13,12 @@
     </div>
 </p-toolbar>
 <div cdkDropListGroup style="margin:auto">
-    <div style="display: flex;">
+    <div style="display: flex;" class="center">
         <div>
             <div class="center">
                 <label style="color: yellow; font-size: 15px;">DEALER STANDS ON ALL 17s</label>
             </div>
-            <div>
+            <div flex layout="row" layout-align="center center">
                 <div cdkDropList 
                     class="cardRowDealer" id="dealer"
                     (cdkDropListDropped)="drop($event)"

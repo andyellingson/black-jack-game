@@ -3,9 +3,11 @@
     justify-content: center;
   }
 .cardRow{
-    min-height: 120px;
+    min-height: 130px;
     border:solid white 3px;
     vertical-align: center;
+    margin: auto;
+    padding: 5px;
 }
 .cardRowNew{
     min-width: 254px;
@@ -15,9 +17,10 @@
     justify-content: center;
 }
 .cardRowDealer{
+    border:solid black 3px;
     vertical-align: center;
-    min-width: 254px;
-    min-height: 120px;
+    min-width: 300px;
+    min-height: 130px;
     margin: auto;
     padding: 5px;
     width: auto;
@@ -78,7 +81,7 @@
 }
 .myButton {
     height: 65px;
-    width: 35%;
+    width: 40%;
 }
 .uiContainer{
     margin: auto;
