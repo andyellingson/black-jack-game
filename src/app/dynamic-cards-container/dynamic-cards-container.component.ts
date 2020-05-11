@@ -27,6 +27,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   flippedCard: boolean;
   card: any;
   firstHand: boolean = true;
+  isDoubled: boolean = true;
 
   @ViewChild("playerCardContainer", { read: ViewContainerRef }) playerContainer;
   @ViewChild("dealerCardContainer", { read: ViewContainerRef }) dealerContainer;
@@ -135,11 +136,15 @@ export class DynamicCardsContainerComponent implements OnInit {
   BetMoney(bet: number, isDouble: boolean = false): void{
     if(this.Bank - (this.Bet + bet) >= 0)
     {
-      this.Bet += bet;
       if(isDouble)
       {
+        this.Bank -= this.Bet;
+        this.isDoubled = true;
         this.HitMe();
         this.StartDealersTurn();
+      }
+      else{
+        this.Bet += bet;  
       }
     }
   }
@@ -177,7 +182,7 @@ export class DynamicCardsContainerComponent implements OnInit {
             this.gameOver = true;
             this.showToastMessage("info", "You Win!!", "Dealer Busted. You won $" + this.Bet);
             this.EndDealerTurn();  
-            this.Bank += 2 * this.Bet;
+            this.Bank += (this.isDoubled ? 3 : 2) * this.Bet;
           }
         }else{
           //dealer between 17 and 21
@@ -185,11 +190,11 @@ export class DynamicCardsContainerComponent implements OnInit {
             this.gameOver = true;
             this.showToastMessage("info", "You Won $" + this.Bet, "You beat the dealer's Hand!");  
             this.EndDealerTurn(); 
-            this.Bank += 2 * this.Bet; 
+            this.Bank += (this.isDoubled ? 3 : 2) * this.Bet; 
           }else if(this.DealerTotal === this.Total){
             this.gameOver = true;
             this.showToastMessage("warn", "Tie", "Push!!"); 
-            this.Bank += this.Bet; 
+            this.Bank += (this.isDoubled ? 2 : 1) * this.Bet; 
             this.EndDealerTurn();   
           }else{
             this.gameOver = true;
@@ -229,7 +234,7 @@ export class DynamicCardsContainerComponent implements OnInit {
     this.Bank -= this.Bet;
 
     this.NoHitYet = true;
-
+    this.isDoubled = false;
     this.gameOver = false;
     this.flippedCard = false;
     this.dealerAces = [];
