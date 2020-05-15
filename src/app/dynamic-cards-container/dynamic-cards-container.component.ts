@@ -111,6 +111,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   }
 
   HitMe(){
+    this.PlaySound("card-flip.wav");
     if(!this.NoHitYet)
     {
       this.NoHitYet = false;
@@ -124,12 +125,21 @@ export class DynamicCardsContainerComponent implements OnInit {
   }
 
   HitDealer(backSide: boolean = false){
+    this.PlaySound("card-flip.wav");
     if(!backSide){
       this.createDealerCardComponent(this.randomInt(0,51));
     } else  {
       this.createDealerCardComponent(52);
     }
   }
+
+  PlaySound(soundFileName: string){
+    var audio = new Audio();
+    audio.src = "../../../assets/sound/" + soundFileName;
+    audio.load();
+    audio.play();
+  }
+
   IsBet():boolean{
     return this.Bet > 0;
   }
@@ -137,6 +147,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   BetMoney(bet: number, isDouble: boolean = false): void{
     if(this.Bank - (this.Bet + bet) >= 0)
     {
+      this.PlaySound("poker-chips4.wav");
       if(isDouble)
       {
         this.Bank -= this.Bet;
@@ -180,6 +191,7 @@ export class DynamicCardsContainerComponent implements OnInit {
             console.log("Remove dealer ace. Aces Left: " + this.dealerAces.length)
             this.DealerTotal -= 10;
           }else{
+            this.PlaySound("win-spacey.wav");
             this.gameOver = true;
             this.showToastMessage("info", "You Win!!", "Dealer Busted. You won $" + this.Bet);
             this.EndDealerTurn();  
@@ -188,16 +200,19 @@ export class DynamicCardsContainerComponent implements OnInit {
         }else{
           //dealer between 17 and 21
           if(this.DealerTotal < this.Total){
+            this.PlaySound("win-spacey.wav");
             this.gameOver = true;
             this.showToastMessage("info", "You Won $" + this.Bet, "You beat the dealer's Hand!");  
             this.EndDealerTurn(); 
             this.Bank += (this.isDoubled ? 4 : 2) * this.Bet; 
           }else if(this.DealerTotal === this.Total){
+            this.PlaySound("retro-you-lose-sfx.wav");
             this.gameOver = true;
             this.showToastMessage("warn", "Tie", "Push!!"); 
             this.Bank += (this.isDoubled ? 2 : 1) * this.Bet; 
             this.EndDealerTurn();   
           }else{
+            this.PlaySound("retro-you-lose-sfx.wav");
             this.gameOver = true;
             this.showToastMessage("error", "You Lose", "Dealer Wins");
             this.EndDealerTurn(); 
@@ -223,6 +238,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   ClearBet(){
     this.Bet = 0;
   }
+
   CanPlay():boolean{
     return this.Bank - this.Bet >= 0;
   }
