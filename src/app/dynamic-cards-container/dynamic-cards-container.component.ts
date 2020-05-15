@@ -57,6 +57,7 @@ export class DynamicCardsContainerComponent implements OnInit {
         this.playerAces.pop();
         this.Total -= 10;
       }else{
+        this.PlaySound("retro-you-lose-sfx.wav");
         this.gameOver = true;
         this.showToastMessage("error", "You Lose!!", "You Busted!!"); 
         this.Bank -= this.Bet;
