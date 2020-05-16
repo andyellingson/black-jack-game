@@ -25,6 +25,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   messageText: string;
   timer: any;
   flippedCard: boolean;
+  flippedCardIndex: number;
   card: any;
   firstHand: boolean = true;
   isDoubled: boolean = true;
@@ -80,6 +81,7 @@ export class DynamicCardsContainerComponent implements OnInit {
       this.card.destroy();
       this.flippedCard = false;
       this.dealerCards.pop();
+      cardIndex = this.flippedCardIndex;
     }
     
     //create new card
@@ -88,12 +90,35 @@ export class DynamicCardsContainerComponent implements OnInit {
     (<CardComponent>componentRef.instance).cardNumber = cardIndex;
     (<CardComponent>componentRef.instance).firstCard = (this.dealerCards.length === 0);
     (<CardComponent>componentRef.instance).update();
+
     if(cardIndex === 52)//back of card
     {
       (<CardComponent>componentRef.instance).value = 0;
       this.card = componentRef;
       this.flippedCard = true;
+
+      //generate flipped cards attributes
+      this.flippedCardIndex = this.randomInt(0,51);
+      console.log("flippedCardIndex = " + this.flippedCardIndex + " flippedCardValue = " + this.getCardValueFromIndex(this.flippedCardIndex));
+      //check for dealer 21
+      if(this.DealerTotal + this.getCardValueFromIndex(this.flippedCardIndex) === 21)
+      {
+        //dealers turn is over
+        this.card.destroy();
+        this.flippedCard = false;
+        this.dealerCards.pop();
+        componentRef = this.dealerContainer.createComponent(factory);
+        (<CardComponent>componentRef.instance).cardNumber = this.flippedCardIndex;
+        (<CardComponent>componentRef.instance).firstCard = false;
+        (<CardComponent>componentRef.instance).update();
+        this.dealerCards.push(<CardComponent>componentRef);
+        this.DealerTotal += (<CardComponent>componentRef.instance).value;
+        this.DealersTurn();
+        return;
+      }
+
     }else{
+      //not the back of card increment dealer total
       this.DealerTotal += (<CardComponent>componentRef.instance).value;
     }
     this.dealerCards.push(<CardComponent>componentRef);
@@ -164,7 +189,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   }
 
   CanDouble():boolean{
-    return !(this.NoHitYet && (this.Total === 10 || this.Total === 11));
+    return !(this.NoHitYet && this.Bank - (2 * this.Bet) >= 0 && (this.Total === 10 || this.Total === 11));
   }
 
   StartDealersTurn(){
@@ -247,12 +272,6 @@ export class DynamicCardsContainerComponent implements OnInit {
   }
 
   Play(){
-    
-    // if(!this.firstHand)
-    //   this.Bank -= this.Bet;
-    // else  
-    //   this.firstHand = false;
-
     this.Bank -= this.Bet;
     this.isDealersTurn = false;
     this.NoHitYet = true;
@@ -282,6 +301,23 @@ export class DynamicCardsContainerComponent implements OnInit {
  */
   randomInt(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  getCardValueFromIndex(index: number)
+  {
+    if(index >= 0 && index < 36)
+    {
+      return Math.floor((index / 4)) + 2;
+    }else{
+      if(index >= 36 && index < 48)
+      {
+        //face cards
+        return 10;
+      }else{
+        return 11;
+      }
+    }
+
   }
 
 }
