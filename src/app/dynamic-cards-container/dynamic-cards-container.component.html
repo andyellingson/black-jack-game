@@ -22,7 +22,7 @@
                 <div class="cardRowDealer" id="dealer">
                     <div style="display: flex;">
                         <div class="sideBar">
-                            <label [hidden]="this.Bet === 0" style="font-size: 15px; color: yellow;">{{DealerTotal}}</label>  
+                            <label [hidden]="this.Bet === 0"  style="font-size: 15px; color: yellow;">{{DealerTotal}}</label>  
                         </div>                    
                         <div #dealerCardContainer></div> 
                     </div>
@@ -61,24 +61,25 @@
                 </div>
             </div> -->
             <div style="display: flex;">
-                <div class="imgHolder" >
+                <div class="imgHolder" tooltip="Bet $1" placement="top" show-delay="500">
                     <img class="chip" src="./assets/img/chipWhite.png" (click)="BetMoney(1)">
                     <span style=" pointer-events: none;">1</span>
                 </div>
-                <div class="imgHolder">
+                <div class="imgHolder" tooltip="Bet $5" placement="top" show-delay="500">
                     <img class="chip" src="./assets/img/chipBlue.png" (click)="BetMoney(5)">
                     <span style=" pointer-events: none;">5</span>
                 </div>
-                <div class="imgHolder2">
+                <div class="imgHolder2" tooltip="Bet $25" placement="top" show-delay="500">
                     <img class="chip" src="./assets/img/chipRed.png" (click)="BetMoney(25)">
                     <span style=" pointer-events: none;">25</span>
                 </div>
-                <div class="imgHolder2">
-                    <img class="chip" src="./assets/img/chipBlack.png" (click)="BetMoney(50)">
-                    <span style=" pointer-events: none;">50</span>
+                <div class="imgHolder2" tooltip="Bet $50" placement="top" show-delay="500">
+                    <img class="chip" src="./assets/img/chipBlack.png" (click)="BetMoney(50)" >
+                    <span style=" pointer-events: none;" >50</span>
                 </div>
                 <div style="padding-top:5px; padding-left: 10px; font-size: 30px; color: yellow;">
                     <label [hidden]="!IsBet()">${{Bet}}</label>  
+                    <label [hidden]="IsBet()">$Bet</label>  
                 </div>
             </div>
         </div>

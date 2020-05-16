@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TooltipModule } from 'ng2-tooltip-directive';
 import { DynamicCardsContainerComponent } from './dynamic-cards-container.component';
 
 describe('DynamicCardsContainerComponent', () => {

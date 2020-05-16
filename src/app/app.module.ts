@@ -14,6 +14,7 @@ import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import {ToolbarModule} from 'primeng/toolbar';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 
@@ -35,7 +36,8 @@ import {ToolbarModule} from 'primeng/toolbar';
     MessageModule,
     ToastModule,
     ButtonModule,
-    ToolbarModule
+    ToolbarModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
