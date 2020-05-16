@@ -2,6 +2,11 @@
     display: flex;
     justify-content: center;
   }
+  .Vcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 .cardRow{
     min-height: 130px;
     border:solid white 3px;
