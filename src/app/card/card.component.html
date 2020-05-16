@@ -1,6 +1,6 @@
 
 <span>
-    <img src={{imagePath}}  *ngIf="firstCard === true" class="firstCard" cdkDrag [attr.id]="'card' + cardNumber" >
-    <img src={{imagePath}}  *ngIf="firstCard === false" class="card" cdkDrag [attr.id]="'card' + cardNumber" >
+    <img src={{imagePath}}  *ngIf="firstCard === true" class="firstCard" [attr.id]="'card' + cardNumber" >
+    <img src={{imagePath}}  *ngIf="firstCard === false" class="card" [attr.id]="'card' + cardNumber" >
 </span>
 

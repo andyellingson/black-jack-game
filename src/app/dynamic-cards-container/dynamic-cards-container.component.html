@@ -19,6 +19,24 @@
                 <label style="color: yellow; font-size: 15px;">DEALER STANDS ON ALL 17s</label>
             </div>
             <div flex layout="row" layout-align="center center">
+                <div class="cardRowDealer" id="dealer">
+                    <div style="display: flex;">
+                        <div class="sideBar">
+                            <label [hidden]="this.Bet === 0" style="font-size: 15px; color: yellow;">{{DealerTotal}}</label>  
+                        </div>                    
+                        <div #dealerCardContainer></div> 
+                    </div>
+                </div>
+                <div class="cardRow" id="player">
+                    <div style="display: flex;">
+                        <div class="sideBar">
+                            <label [hidden]="this.Bet === 0" style="font-size: 15px; color: yellow;">{{Total}}</label>
+                        </div>  
+                        <div #playerCardContainer></div>    
+                    </div>
+                </div>
+            </div>
+            <!-- <div flex layout="row" layout-align="center center">
                 <div cdkDropList 
                     class="cardRowDealer" id="dealer"
                     (cdkDropListDropped)="drop($event)"
@@ -41,7 +59,7 @@
                         <div #playerCardContainer></div>    
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div style="display: flex;">
                 <div class="imgHolder" >
                     <img class="chip" src="./assets/img/chipWhite.png" (click)="BetMoney(1)">
