@@ -88,12 +88,12 @@
 <div>
     <div class="center">
         <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver || !CanPlay()" label="Play" (click)="Play()"></button>
-        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver" label="Stand" (click)="Stay()"></button>
-        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver"  label="Hit Me" (click)="HitMe()"></button>
+        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver || isDealersTurn" label="Stand" (click)="Stay()"></button>
+        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver || isDealersTurn"  label="Hit Me" (click)="HitMe()"></button>
     </div>
     <div class="center">
         <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="CanDouble() || !CanPlay()"  label="Double" (click)="BetMoney(Bet, true)"></button>
-        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver" label="Clear Bet" (click)="ClearBet()"></button>
+        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver || !isDealersTurn" label="Clear Bet" (click)="ClearBet()"></button>
     </div>  
 <p-toast position="top-center"></p-toast>
    

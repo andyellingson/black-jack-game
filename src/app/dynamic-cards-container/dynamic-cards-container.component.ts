@@ -28,6 +28,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   card: any;
   firstHand: boolean = true;
   isDoubled: boolean = true;
+  isDealersTurn: boolean = false;
 
   @ViewChild("playerCardContainer", { read: ViewContainerRef }) playerContainer;
   @ViewChild("dealerCardContainer", { read: ViewContainerRef }) dealerContainer;
@@ -115,7 +116,7 @@ export class DynamicCardsContainerComponent implements OnInit {
     this.PlaySound("card-flip.wav");
     if(!this.NoHitYet)
     {
-      this.NoHitYet = false;
+      this.NoHitYet = true;
     }
 
     this.createPlayerCardComponent(this.randomInt(0,51));  
@@ -167,6 +168,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   }
 
   StartDealersTurn(){
+    this.isDealersTurn = true;
     if(this.gameOver)
     {
       //flip card and stop
@@ -252,7 +254,7 @@ export class DynamicCardsContainerComponent implements OnInit {
     //   this.firstHand = false;
 
     this.Bank -= this.Bet;
-
+    this.isDealersTurn = false;
     this.NoHitYet = true;
     this.isDoubled = false;
     this.gameOver = false;
