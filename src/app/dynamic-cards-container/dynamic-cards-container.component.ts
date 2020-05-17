@@ -99,7 +99,7 @@ export class DynamicCardsContainerComponent implements OnInit {
 
       //generate flipped cards attributes
       this.flippedCardIndex = this.randomInt(0,51);
-      console.log("flippedCardIndex = " + this.flippedCardIndex + " flippedCardValue = " + this.getCardValueFromIndex(this.flippedCardIndex));
+      //console.log("flippedCardIndex = " + this.flippedCardIndex + " flippedCardValue = " + this.getCardValueFromIndex(this.flippedCardIndex));
       //check for dealer 21
       if(this.DealerTotal + this.getCardValueFromIndex(this.flippedCardIndex) === 21)
       {
@@ -138,12 +138,11 @@ export class DynamicCardsContainerComponent implements OnInit {
   }
 
   HitMe(){
-    this.PlaySound("card-flip.wav");
-    if(!this.NoHitYet)
+    if(this.playerCards.length === 2)
     {
-      this.NoHitYet = true;
+      this.NoHitYet = false;
     }
-
+    this.PlaySound("card-flip.wav");
     this.createPlayerCardComponent(this.randomInt(0,51));  
   }
 
