@@ -30,6 +30,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   firstHand: boolean = true;
   isDoubled: boolean = true;
   isDealersTurn: boolean = false;
+  isHandStarted: boolean = false;
 
   @ViewChild("playerCardContainer", { read: ViewContainerRef }) playerContainer;
   @ViewChild("dealerCardContainer", { read: ViewContainerRef }) dealerContainer;
@@ -170,8 +171,12 @@ export class DynamicCardsContainerComponent implements OnInit {
     return this.Bet > 0;
   }
 
+  CanBet():boolean{
+    return !this.isHandStarted;
+  }
+
   BetMoney(bet: number, isDouble: boolean = false): void{
-    if(this.Bank - (this.Bet + bet) >= 0)
+    if(this.Bank - (this.Bet + bet) >= 0 && (this.CanBet() || isDouble))
     {
       this.PlaySound("poker-chips4.wav");
       if(isDouble)
@@ -188,7 +193,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   }
 
   CanDouble():boolean{
-    return !(this.NoHitYet && this.Bank - (2 * this.Bet) >= 0 && (this.Total === 10 || this.Total === 11));
+    return !(this.NoHitYet && this.Bank - (2 * this.Bet) >= 0);
   }
 
   StartDealersTurn(){
@@ -260,6 +265,8 @@ export class DynamicCardsContainerComponent implements OnInit {
         detail: det,
         life:1000
     });
+
+    this.isHandStarted = false;
   }
   
   ClearBet(){
@@ -271,6 +278,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   }
 
   Play(){
+    this.isHandStarted = true;
     this.Bank -= this.Bet;
     this.isDealersTurn = false;
     this.NoHitYet = true;
